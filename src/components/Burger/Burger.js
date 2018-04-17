@@ -1,4 +1,5 @@
 import React from 'react';
+
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
@@ -8,7 +9,7 @@ const burger = (props) => {
       return [...Array(props.ingredients[key])].map((_, i) => {
         return <BurgerIngredient key={key + i} type={key} />
       })
-    }) 
+    })
     .reduce((prev, curr) => prev.concat(curr), []); // reduce the two dimensional array to get an array of ingrediednts
 
 
