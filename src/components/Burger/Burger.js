@@ -1,21 +1,19 @@
 import React from 'react';
-import classes from './Burger.css'
+import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
-
   let ingredientsArray = Object.keys(props.ingredients)
     .map(key => {
       return [...Array(props.ingredients[key])].map((_, i) => {
         return <BurgerIngredient key={key + i} type={key} />
       })
-    })
-    .reduce((prev, curr) => { // reduce the two dimensional array to get an array of ingredients
-      return prev.concat(curr);
-    }, [])
+    }) 
+    .reduce((prev, curr) => prev.concat(curr), []); // reduce the two dimensional array to get an array of ingrediednts
+
 
   if (ingredientsArray.length === 0) {
-    ingredientsArray = <p>Please start adding ingredients!</p>
+    ingredientsArray = <p>Please start adding ingredients!</p>;
   }
 
   return (
@@ -25,6 +23,7 @@ const burger = (props) => {
       <BurgerIngredient type='bread-bottom' />
     </div>
   );
-}
+};
 
 export default burger;
+
