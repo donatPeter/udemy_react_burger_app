@@ -71,6 +71,10 @@ class BurgerBuilder extends Component {
     this.setState({ ordering: false });
   }
 
+  orderContinueHandler = () => {
+    alert('continue');
+  }
+
   render() {
     const disableButtonMap = { ...this.state.ingredients };
     for (const ingredient in disableButtonMap) {
@@ -80,7 +84,10 @@ class BurgerBuilder extends Component {
     return (
       <Aux>
         <Modal show={this.state.ordering} modalClosed={this.orderCancelHandler}>
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            orderCancelled={this.orderCancelHandler}
+            orderContinued={this.orderContinueHandler} />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
