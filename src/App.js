@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Layout from './components/Layout/Layout'
-import BurgerBuilder from './containers/BurgerBuilder/BulgerBuilder'
+
+import Layout from './components/Layout/Layout';
+import BurgerBuilder from './containers/BurgerBuilder/BulgerBuilder';
+import Checkout from './containers/Checkout/Checkout';
 
 class App extends Component {
   render() {
@@ -8,6 +10,7 @@ class App extends Component {
       <div>
         <Layout>
           <BurgerBuilder></BurgerBuilder>
+          <Checkout />
         </Layout>
       </div>
     );
