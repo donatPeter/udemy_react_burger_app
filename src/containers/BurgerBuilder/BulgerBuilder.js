@@ -14,7 +14,7 @@ const INGREDIENT_PRICES = {
   cheese: 0.4,
   meat: 1.3,
   bacon: 0.7
-}
+};
 
 class BurgerBuilder extends Component {
 
@@ -33,8 +33,9 @@ class BurgerBuilder extends Component {
         this.setState({ ingredients: res.data });
       })
       .catch(err => {
+        console.log(err);
         this.setState({ error: true });
-      })
+      });
   }
 
   addIngredientHandler = (type) => {
@@ -82,24 +83,25 @@ class BurgerBuilder extends Component {
   }
 
   orderContinueHandler = () => {
-    this.setState({ loading: true });
-    const order = {
-      ingredient: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Test',
-        address: {
-          street: 'Test'
-        }
-      }
-    };
-    axios.post('/orders.json', order)
-      .then(res => {
-        this.setState({ loading: false, ordering: false });
-      })
-      .catch(err => {
-        this.setState({ loading: false, ordering: false });
-      })
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredient: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: 'Test',
+    //     address: {
+    //       street: 'Test'
+    //     }
+    //   }
+    // };
+    // axios.post('/orders.json', order)
+    //   .then(res => {
+    //     this.setState({ loading: false, ordering: false });
+    //   })
+    //   .catch(err => {
+    //     this.setState({ loading: false, ordering: false });
+    //   })
+    this.props.history.push('/checkout');
   }
 
   render() {
@@ -109,7 +111,7 @@ class BurgerBuilder extends Component {
     }
 
     let orderSummary = null;
-    let burger = <Spinner />
+    let burger = <Spinner />;
     if (this.state.ingredients) {
       burger = (
         <Aux>
@@ -122,17 +124,17 @@ class BurgerBuilder extends Component {
             disabled={disableButtonMap}
             price={this.state.totalPrice} />
         </Aux>
-      )
+      );
 
       orderSummary = <OrderSummary
         ingredients={this.state.ingredients}
         price={this.state.totalPrice}
         orderCancelled={this.orderCancelHandler}
-        orderContinued={this.orderContinueHandler} />
+        orderContinued={this.orderContinueHandler} />;
     }
 
     if (this.state.loading) {
-      orderSummary = <Spinner />
+      orderSummary = <Spinner />;
     }
 
     return (

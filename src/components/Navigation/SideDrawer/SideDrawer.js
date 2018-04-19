@@ -10,7 +10,7 @@ const sideDrawer = (props) => {
 
   let attachedClasses = [classes.SideDrawer, classes.Close].join(' ');
   if (props.open) {
-    attachedClasses = [classes.SideDrawer, classes.Open].join(' ');;
+    attachedClasses = [classes.SideDrawer, classes.Open].join(' ');
   }
 
   return (

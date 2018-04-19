@@ -7,8 +7,8 @@ const burger = (props) => {
   let ingredientsArray = Object.keys(props.ingredients)
     .map(key => {
       return [...Array(props.ingredients[key])].map((_, i) => {
-        return <BurgerIngredient key={key + i} type={key} />
-      })
+        return <BurgerIngredient key={key + i} type={key} />;
+      });
     })
     .reduce((prev, curr) => prev.concat(curr), []); // reduce the two dimensional array to get an array of ingrediednts
 
