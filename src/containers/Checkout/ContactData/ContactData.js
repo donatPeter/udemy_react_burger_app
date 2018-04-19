@@ -18,7 +18,7 @@ class ContactData extends Component {
 
     this.setState({ loading: true });
     const order = {
-      ingredient: this.props.ingredients,
+      ingredients: this.props.ingredients,
       price: this.props.price,
       customer: {
         name: 'Test',
