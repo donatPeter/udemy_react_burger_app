@@ -14,20 +14,11 @@ import * as burgerBuilderActions from '../../store/actions/actions';
 class BurgerBuilder extends Component {
 
   state = {
-    ordering: false,
-    loading: false,
-    error: false
+    ordering: false
   }
 
   componentDidMount() {
-    // axios.get('/ingredients.json')
-    //   .then(res => {
-    //     this.setState({ ingredients: res.data });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     this.setState({ error: true });
-    //   });
+    this.props.onFetchIngredients();
   }
 
   updateOrderStat = (ingredients) => {
@@ -58,7 +49,7 @@ class BurgerBuilder extends Component {
     }
 
     let orderSummary = null;
-    let burger = <Spinner />;
+    let burger = this.props.error ? <p>Ingredients cannot be loaded</p> : <Spinner />;
     if (this.props.ings) {
       burger = (
         <Aux>
@@ -80,10 +71,6 @@ class BurgerBuilder extends Component {
         orderContinued={this.orderContinueHandler} />;
     }
 
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
-    }
-
     return (
       <Aux>
         <Modal show={this.state.ordering} modalClosed={this.orderCancelHandler}>
@@ -98,14 +85,16 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
+    error: state.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
-    onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName))
+    onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+    onFetchIngredients: () => dispatch(burgerBuilderActions.fetchingInitIngredients())
   };
 };
 
