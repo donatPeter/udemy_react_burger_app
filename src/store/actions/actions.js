@@ -3,3 +3,7 @@ export {
   removeIngredient,
   fetchingInitIngredients
 } from './burgerBuilder';
+
+export {
+  orderBurger
+} from './order';
