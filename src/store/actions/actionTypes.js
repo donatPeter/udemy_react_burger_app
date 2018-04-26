@@ -11,3 +11,7 @@ export const PURCHASE_INIT = 'PURCHASE_INIT';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const FETCH_ORDERS_SUCCESS = 'FETCH_ORDERS_SUCCESS';
 export const FETCH_ORDERS_FAILED = 'FETCH_ORDERS_FAILED';
+
+export const AUTH = 'AUTH';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILED = 'AUTH_FAILED';

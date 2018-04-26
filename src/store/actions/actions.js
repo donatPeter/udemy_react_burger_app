@@ -5,7 +5,11 @@ export {
 } from './burgerBuilder';
 
 export {
-  orderBurger, 
+  orderBurger,
   purchaseInit,
   fetchOrders
 } from './order';
+
+export {
+  auth
+} from './auth';
