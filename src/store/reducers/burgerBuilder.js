@@ -6,7 +6,8 @@ const initialTotalPrice = 4;
 const initialState = {
   ingredients: null,
   totalPrice: initialTotalPrice,
-  error: false
+  error: false,
+  building: false
 };
 
 const INGREDIENT_PRICES = {
@@ -21,12 +22,14 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:
       updatedIngredients = updateState(state.ingredients, { [action.ingredientName]: state.ingredients[action.ingredientName] + 1 });
-      return updateState(state, { ingredients: updatedIngredients, totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName] });
+      return updateState(state,
+        { ingredients: updatedIngredients, totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName], building: true });
     case actionTypes.REMOVE_INGREDIENT:
       updatedIngredients = updateState(state.ingredients, { [action.ingredientName]: state.ingredients[action.ingredientName] - 1 });
-      return updateState(state, { ingredients: updatedIngredients, totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName] });
+      return updateState(state,
+        { ingredients: updatedIngredients, totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName], building: true });
     case actionTypes.SET_INGREDIENTS:
-      return updateState(state, { ingredients: action.ingredients, error: false, totalPrice: initialTotalPrice });
+      return updateState(state, { ingredients: action.ingredients, error: false, totalPrice: initialTotalPrice, building: false });
     case actionTypes.FETCH_INGREDIENTS_FAILED:
       return updateState(state, { error: true });
     default:
