@@ -21,10 +21,10 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:
       updatedIngredients = updateState(state.ingredients, { [action.ingredientName]: state.ingredients[action.ingredientName] + 1 });
-      return updateState(state, updatedIngredients, { totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName] });
+      return updateState(state, { ingredients: updatedIngredients, totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName] });
     case actionTypes.REMOVE_INGREDIENT:
       updatedIngredients = updateState(state.ingredients, { [action.ingredientName]: state.ingredients[action.ingredientName] - 1 });
-      return updateState(state, updatedIngredients, { totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName] });
+      return updateState(state, { ingredients: updatedIngredients, totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName] });
     case actionTypes.SET_INGREDIENTS:
       return updateState(state, { ingredients: action.ingredients, error: false, totalPrice: initialTotalPrice });
     case actionTypes.FETCH_INGREDIENTS_FAILED:
