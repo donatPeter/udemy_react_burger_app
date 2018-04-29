@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler';
 import axios from '../../axiosOrders';
 import * as actions from '../../store/actions/actions';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
   state = {
     ordering: false
